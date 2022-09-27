@@ -1,0 +1,13 @@
+.my-form {
+  border: 1px solid black;
+  max-width: 800px;
+  border-radius: 30px;
+  padding: 1.2rem 1.6rem;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+}
+
+.my-h1 {
+  margin: 2.1rem 0;
+  text-align: center;
+}
