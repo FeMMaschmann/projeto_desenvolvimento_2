@@ -11,3 +11,7 @@
   margin: 2.1rem 0;
   text-align: center;
 }
+
+.my-menu-nav div {
+  padding: 1.2rem 0.8rem;
+}
