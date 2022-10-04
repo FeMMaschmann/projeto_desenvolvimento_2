@@ -15,3 +15,7 @@
 .my-menu-nav div {
   padding: 1.2rem 0.8rem;
 }
+
+.leaflet-container {
+  height: 380px;
+}

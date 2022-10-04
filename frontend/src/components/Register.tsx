@@ -20,7 +20,9 @@ const registerUser = async (data: RegisterData) => {
     await axios.post("users/test", data, {
       baseURL: rootUrl,
     });
+    alert("Cadastro efetuado com sucesso!");
   } catch (error) {
+    alert("Deu erro!");
     console.log(error);
   }
 };
