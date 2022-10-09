@@ -2,7 +2,7 @@ const db = require("./db_connection");
 
 async function getLocations(req, res) {
   const row = await db.query(
-    `SELECT Lat, Lon, CONCAT(u.FirstName, " ", u.LastName) 'UserName'
+    `SELECT Lat, Lon, CONCAT(u.FirstName, " ", u.LastName) 'UserName', u.BusinessName
             ,CONCAT(Street, ", ", AdressNumber) 'Adress'
             ,(SELECT COUNT(*) FROM Installations WHERE UserId = a.UserId) 'Instalations'
         FROM Adresses a JOIN Users u ON a.UserId = u.Id;`
