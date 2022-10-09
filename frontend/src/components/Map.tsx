@@ -29,6 +29,7 @@ type BdMapData = {
   Lat: number;
   Lon: number;
   UserName: string;
+  BusinessName: string;
   Adress: string;
   Instalations: number;
 };
@@ -92,7 +93,7 @@ export default function Map() {
               >
                 <Popup>
                   <div>
-                    <h5>{location.UserName}</h5>
+                    <h5>{location.BusinessName}</h5>
                     <p>
                       Endereço: {location.Adress} <br />
                       Número de instalações: {location.Instalations}
