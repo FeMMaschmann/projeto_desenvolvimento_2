@@ -3,22 +3,13 @@ import Form from "react-bootstrap/Form";
 import Menu from "./Menu";
 import axios from "axios";
 import { useState } from "react";
-
-type RegisterData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-};
-
-const rootUrl = "http://localhost:3001/";
+import { baseURL, RegisterData } from "../types/types";
 
 const registerUser = async (data: RegisterData) => {
   console.log(data);
   try {
     await axios.post("users/test", data, {
-      baseURL: rootUrl,
+      baseURL: baseURL,
     });
     alert("Cadastro efetuado com sucesso!");
   } catch (error) {
