@@ -28,6 +28,7 @@ type UserMapData = {
 type BdMapData = {
   Lat: number;
   Lon: number;
+  UserName: string;
   Adress: string;
   Instalations: number;
 };
@@ -82,13 +83,25 @@ export default function Map() {
         </Marker>
         <>
           {bdMapData.map((location, index) => {
+            const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${location.Lat},${location.Lon}`;
             return (
               <Marker
                 key={`location-${index}`}
                 icon={installerMarkerIcon}
                 position={[location.Lat, location.Lon]}
               >
-                <Popup>{location.Adress}</Popup>
+                <Popup>
+                  <div>
+                    <h5>{location.UserName}</h5>
+                    <p>
+                      Endereço: {location.Adress} <br />
+                      Número de instalações: {location.Instalations}
+                    </p>
+                    <a href={googleMapsLink} className="my-google-link-button">
+                      <span className="small">Ver no Google Maps</span>
+                    </a>
+                  </div>
+                </Popup>
               </Marker>
             );
           })}

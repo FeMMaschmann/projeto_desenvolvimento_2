@@ -19,3 +19,7 @@
 .leaflet-container {
   height: 380px;
 }
+
+.my-google-link-button {
+  color: rgb(97, 161, 61) !important;
+}
