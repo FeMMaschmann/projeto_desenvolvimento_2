@@ -9,4 +9,19 @@ async function insert(req, res) {
   res.send("OK");
 }
 
-module.exports = { insert };
+async function login(req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (email === "" || password === "") {
+    res.status(404).send("ERROR - User not found");
+  }
+  const row = await db.query(
+    `SELECT * FROM Users WHERE Email = ? AND Password = ?`,
+    [req.body.email, req.body.password]
+  );
+
+  res.send(row);
+}
+
+module.exports = { insert, login };
