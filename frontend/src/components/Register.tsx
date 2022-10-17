@@ -3,7 +3,13 @@ import Form from "react-bootstrap/Form";
 import Menu from "./Menu";
 import axios from "axios";
 import { useState } from "react";
-import { baseURL, RegisterData } from "../types/types";
+import {
+  baseURL,
+  RegisterData,
+  TypesLogged,
+  TypesLoginData,
+} from "../types/types";
+import { Link } from "react-router-dom";
 
 const registerUser = async (data: RegisterData) => {
   console.log(data);
@@ -28,7 +34,7 @@ const isRegisterDataValid = (RegisterData: RegisterData) => {
   return true;
 };
 
-export default function Register() {
+export default function Register(props: TypesLogged & TypesLoginData) {
   const [data, setData] = useState<RegisterData>({
     firstName: "",
     lastName: "",
@@ -41,7 +47,12 @@ export default function Register() {
 
   return (
     <>
-      <Menu />
+      <Menu
+        isLogged={props.isLogged}
+        setIsLogged={props.setIsLogged}
+        loggedData={props.loggedData}
+        setLoggedData={props.setLoggedData}
+      />
       <div className="container">
         <h1 className="my-h1">Cadastro</h1>
         <div className="my-form">
@@ -122,6 +133,9 @@ export default function Register() {
                 />
               </div>
             </Form.Group>
+            <p>
+              Já possui uma conta? Faça o <Link to="/login">login</Link>
+            </p>
             <Button
               variant="primary"
               disabled={!canSend}
@@ -130,7 +144,7 @@ export default function Register() {
                 registerUser(data);
               }}
             >
-              Submit
+              Registrar
             </Button>
           </Form>
         </div>

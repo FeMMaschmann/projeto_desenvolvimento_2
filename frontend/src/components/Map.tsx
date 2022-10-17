@@ -8,7 +8,7 @@ import installerMarker from "../img/installerMarker.svg";
 import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import axios from "axios";
-import { baseURL } from "../types/types";
+import { baseURL, TypesLogged, TypesLoginData } from "../types/types";
 
 const userMarkerIcon = L.icon({
   iconUrl: userMarker,
@@ -45,7 +45,7 @@ const getBdMapData = async () => {
   }
 };
 
-export default function Map() {
+export default function Map(props: TypesLogged & TypesLoginData) {
   const [userMapData, setUserMapData] = useState<UserMapData>({
     position: [-30.055322, -51.104985],
     zoom: 12,
@@ -69,11 +69,17 @@ export default function Map() {
 
   return (
     <>
-      <Menu />
+      <Menu
+        isLogged={props.isLogged}
+        setIsLogged={props.setIsLogged}
+        loggedData={props.loggedData}
+        setLoggedData={props.setLoggedData}
+      />
       <MapContainer
         center={userMapData.position}
         zoom={userMapData.zoom}
         scrollWheelZoom={true}
+        className="map-container"
       >
         <TileLayer
           attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"

@@ -5,6 +5,25 @@ export type TypesLogged = {
   setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+export type TypesLoginData = {
+  setLoggedData: React.Dispatch<
+    React.SetStateAction<{
+      Id: number;
+      FirstName: string;
+      LastName: string;
+      Email: string;
+      BusinessName: string;
+    }>
+  >;
+  loggedData: {
+    Id: number;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    BusinessName: string;
+  };
+};
+
 export type RegisterData = {
   firstName: string;
   lastName: string;

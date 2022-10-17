@@ -3,38 +3,49 @@ import Form from "react-bootstrap/Form";
 import Menu from "./Menu";
 import axios from "axios";
 import { useState } from "react";
-import { baseURL, LoginData } from "../types/types";
+import {
+  baseURL,
+  LoginData,
+  TypesLogged,
+  TypesLoginData,
+} from "../types/types";
+import { Link, useNavigate } from "react-router-dom";
 
 const loginUser = async (data: LoginData) => {
-  console.log(data);
   try {
-    const user = await axios.post("users/test", data, {
+    const user = await axios.post("users/login", data, {
       baseURL: baseURL,
     });
-    alert(user);
+    return user.data[0];
   } catch (error) {
     alert("Deu erro!");
     console.log(error);
   }
 };
 
-const isRegisterDataValid = (RegisterData: LoginData) => {
-  if (RegisterData.email.length < 2) return false;
-  if (RegisterData.password.length < 3) return false;
+const isRegisterDataValid = (LoginData: LoginData) => {
+  if (LoginData.email.length < 2) return false;
+  if (LoginData.password.length < 3) return false;
   return true;
 };
 
-export default function Login() {
+export default function Login(props: TypesLogged & TypesLoginData) {
   const [data, setData] = useState<LoginData>({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const canSend = isRegisterDataValid(data);
 
   return (
     <>
-      <Menu />
+      <Menu
+        isLogged={props.isLogged}
+        setIsLogged={props.setIsLogged}
+        loggedData={props.loggedData}
+        setLoggedData={props.setLoggedData}
+      />
       <div className="container">
         <h1 className="my-h1">Login</h1>
         <div className="my-form">
@@ -71,15 +82,23 @@ export default function Login() {
                 />
               </div>
             </Form.Group>
+            <p>
+              Ainda não tem uma conta? <Link to="/register">Cadastre-se</Link>
+            </p>
             <Button
               variant="primary"
               disabled={!canSend}
               type="button"
               onClick={() => {
-                loginUser(data);
+                loginUser(data).then(function (result) {
+                  props.setLoggedData(result);
+                  props.setIsLogged(true);
+                });
+                console.log(props.loggedData);
+                navigate("../Map");
               }}
             >
-              Submit
+              Entrar
             </Button>
           </Form>
         </div>

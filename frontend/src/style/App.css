@@ -12,14 +12,25 @@
   text-align: center;
 }
 
+.my-menu-nav {
+  width: 100%;
+}
+
 .my-menu-nav div {
   padding: 1.2rem 0.8rem;
 }
 
 .leaflet-container {
-  height: 380px;
+  min-height: 400px;
+  height: 890px;
 }
 
 .my-google-link-button {
   color: rgb(97, 161, 61) !important;
+}
+
+.my-account-menu {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
