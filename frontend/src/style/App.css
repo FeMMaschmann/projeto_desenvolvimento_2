@@ -1,3 +1,11 @@
+* {
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
 .my-form {
   border: 1px solid black;
   max-width: 800px;
@@ -5,6 +13,14 @@
   padding: 1.2rem 1.6rem;
   margin: 0 auto;
   margin-top: 1.8rem;
+}
+
+.my-account-div {
+  padding: 1.2rem 1.6rem;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: space-around;
 }
 
 .my-h1 {
@@ -33,4 +49,17 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.my-logo {
+  height: 4rem;
+  margin: 0.4rem 0.2rem;
+}
+
+.my-menu {
+  background-color: #ff7a00 !important;
+}
+
+.my-icon-back {
+  background-color: #ff7a00 !important;
 }
