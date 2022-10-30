@@ -10,4 +10,12 @@ async function getLocations(req, res) {
   res.send(row);
 }
 
-module.exports = { getLocations };
+async function getAdressByUserId(req, res) {
+  const row = await db.query(
+    `SELECT ZipCode, Street, AdressNumber, AdressComplement, District, City, State FROM Adresses WHERE UserId = ?;`,
+    [req.params.id]
+  );
+  res.send(row[0]);
+}
+
+module.exports = { getLocations, getAdressByUserId };
