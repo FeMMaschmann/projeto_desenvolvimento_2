@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Map from "./components/Map";
 import Login from "./components/Login";
 import Account from "./components/Account";
+import AccAdress from "./components/AccAdress";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -69,6 +70,17 @@ function App() {
           path="/account"
           element={
             <Account
+              isLogged={isLogged}
+              setIsLogged={setIsLogged}
+              loggedData={loggedData}
+              setLoggedData={setLoggedData}
+            />
+          }
+        ></Route>
+        <Route
+          path="/accAdress"
+          element={
+            <AccAdress
               isLogged={isLogged}
               setIsLogged={setIsLogged}
               loggedData={loggedData}

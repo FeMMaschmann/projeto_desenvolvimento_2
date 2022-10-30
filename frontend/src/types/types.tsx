@@ -36,3 +36,14 @@ export type LoginData = {
   email: string;
   password: string;
 };
+
+export type AdressData = {
+  ZipCode: string;
+  Street: string;
+  AdressNumber: string;
+  AdressComplement: string;
+  District: string;
+  City: string;
+  State: string;
+  BusinessName: string;
+};

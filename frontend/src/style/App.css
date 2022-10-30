@@ -36,6 +36,11 @@
   padding: 1.2rem 0.8rem;
 }
 
+.my-menu-nav div a {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .leaflet-container {
   min-height: 400px;
   height: 890px;

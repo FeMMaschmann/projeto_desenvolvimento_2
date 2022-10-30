@@ -17,9 +17,6 @@ export default function Menu(props: TypesLogged & TypesLoginData) {
           {props.isLogged ? (
             <>
               <div>
-                <Link to="/">Home</Link>
-              </div>
-              <div>
                 <Link to="/map">Mapa</Link>
               </div>
               <div>

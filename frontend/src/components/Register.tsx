@@ -23,7 +23,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const registerUser = async (data: RegisterData) => {
   console.log(data);
   try {
-    await axios.post("users/test", data, {
+    await axios.post("users/new", data, {
       baseURL: baseURL,
     });
     alert("Cadastro efetuado com sucesso!");
@@ -128,6 +128,7 @@ export default function Register(props: TypesLogged & TypesLoginData) {
                     id="email"
                     label="Endereço de E-mail"
                     name="email"
+                    type="email"
                     autoComplete="email"
                     onChange={(e) => {
                       setData({

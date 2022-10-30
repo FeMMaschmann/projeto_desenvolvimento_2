@@ -88,6 +88,7 @@ export default function Login(props: TypesLogged & TypesLoginData) {
                 id="email"
                 label="Email"
                 name="email"
+                type="email"
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => {
