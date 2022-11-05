@@ -47,3 +47,10 @@ export type AdressData = {
   State: string;
   BusinessName: string;
 };
+
+export type InstallData = {
+  InstallationDate: string | undefined;
+  Description: string;
+  ClientName: string;
+  Vehicle: string;
+};

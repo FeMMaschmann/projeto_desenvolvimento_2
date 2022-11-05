@@ -48,9 +48,9 @@ export default function Account(props: TypesLogged & TypesLoginData) {
                   Alterar meu endereço
                 </Button>
               </Link>
-              <Link to="/newInstallation">
+              <Link to="/installations">
                 <Button variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth>
-                  Registrar nova instalação
+                  Minhas instalações
                 </Button>
               </Link>
             </Box>

@@ -8,6 +8,8 @@ import Map from "./components/Map";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import AccAdress from "./components/AccAdress";
+import Installations from "./components/Installations";
+import NewInstallation from "./components/NewInstallation";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -81,6 +83,28 @@ function App() {
           path="/accAdress"
           element={
             <AccAdress
+              isLogged={isLogged}
+              setIsLogged={setIsLogged}
+              loggedData={loggedData}
+              setLoggedData={setLoggedData}
+            />
+          }
+        ></Route>
+        <Route
+          path="/installations"
+          element={
+            <Installations
+              isLogged={isLogged}
+              setIsLogged={setIsLogged}
+              loggedData={loggedData}
+              setLoggedData={setLoggedData}
+            />
+          }
+        ></Route>
+        <Route
+          path="/newInstallation"
+          element={
+            <NewInstallation
               isLogged={isLogged}
               setIsLogged={setIsLogged}
               loggedData={loggedData}

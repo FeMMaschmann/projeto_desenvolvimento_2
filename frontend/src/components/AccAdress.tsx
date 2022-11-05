@@ -7,7 +7,7 @@ import {
   TypesLogged,
   TypesLoginData,
 } from "../types/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -19,14 +19,33 @@ import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import * as Nominatim from "nominatim-browser";
 
-const updateAdress = async (data: AdressData) => {
-  console.log(data);
+const updateAdress = async (data: AdressData, userId: number) => {
   try {
-    await axios.post("users/test", data, {
-      baseURL: baseURL,
+    Nominatim.geocode({
+      city: data.City,
+      state: data.State,
+      country: "BR",
+      addressdetails: false,
+    }).then(async (results: any[]) => {
+      const result = results[0];
+      const sendData = {
+        Lat: result.lat,
+        Lon: result.lon,
+        ZipCode: data.ZipCode,
+        Street: data.Street,
+        AdressNumber: data.AdressNumber,
+        AdressComplement: data.AdressComplement,
+        District: data.District,
+        City: data.City,
+        State: data.State,
+        BusinessName: data.BusinessName,
+      };
+      await axios.put(`/locations/${userId}`, sendData, {
+        baseURL: baseURL,
+      });
     });
-    alert("Cadastro efetuado com sucesso!");
   } catch (error) {
     alert("Deu erro!");
     console.log(error);
@@ -68,6 +87,8 @@ export default function AccAdress(props: TypesLogged & TypesLoginData) {
     State: "",
     BusinessName: props.loggedData.BusinessName,
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getBdData(props.loggedData.Id).then(function (result) {
@@ -246,13 +267,19 @@ export default function AccAdress(props: TypesLogged & TypesLoginData) {
                 </Grid>
               </Grid>
               <Button
-                type="submit"
+                type="button"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 disabled={!canSend}
                 onClick={() => {
-                  updateAdress(data);
+                  updateAdress(data, props.loggedData.Id);
+                  props.setLoggedData({
+                    ...props.loggedData,
+                    BusinessName: data.BusinessName,
+                  });
+                  alert("Alteração feita com sucesso");
+                  navigate("../Account");
                 }}
               >
                 Alterar

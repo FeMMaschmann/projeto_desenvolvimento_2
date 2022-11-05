@@ -68,3 +68,15 @@
 .my-icon-back {
   background-color: #ff7a00 !important;
 }
+
+.my-card {
+  border: 1px solid #008eb3;
+  width: 100%;
+  border-radius: 30px;
+  padding: 1.2rem 1.6rem;
+  margin: 1rem auto;
+}
+
+.my-align-right {
+  text-align: right;
+}
