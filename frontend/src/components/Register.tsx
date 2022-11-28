@@ -52,6 +52,7 @@ export default function Register(props: TypesLogged & TypesLoginData) {
     email: "",
     password: "",
     passwordConfirm: "",
+    phoneNumber: "",
   });
 
   const canSend = isRegisterDataValid(data);
@@ -173,6 +174,23 @@ export default function Register(props: TypesLogged & TypesLoginData) {
                       });
                     }}
                     value={data.passwordConfirm}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="phoneNumber"
+                    label="Digite seu telefone"
+                    id="phoneNumber"
+                    autoComplete="phoneNumber"
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        phoneNumber: e.target.value,
+                      });
+                    }}
+                    value={data.phoneNumber}
                   />
                 </Grid>
               </Grid>

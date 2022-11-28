@@ -24,12 +24,26 @@ export type TypesLoginData = {
   };
 };
 
+export type TypesPerfilData = {
+  setPerfil: React.Dispatch<
+    React.SetStateAction<{
+      Id: number;
+      BusinessName: string;
+    }>
+  >;
+  perfil: {
+    Id: number;
+    BusinessName: string;
+  };
+};
+
 export type RegisterData = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   passwordConfirm: string;
+  phoneNumber: string;
 };
 
 export type LoginData = {

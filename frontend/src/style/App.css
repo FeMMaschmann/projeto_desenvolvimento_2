@@ -80,3 +80,8 @@
 .my-align-right {
   text-align: right;
 }
+
+.my-instalation-title {
+  text-align: center;
+  font-size: 1.2rem;
+}

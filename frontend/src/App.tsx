@@ -10,6 +10,7 @@ import Account from "./components/Account";
 import AccAdress from "./components/AccAdress";
 import Installations from "./components/Installations";
 import NewInstallation from "./components/NewInstallation";
+import Perfil from "./components/Perfil";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -18,6 +19,10 @@ function App() {
     FirstName: "",
     LastName: "",
     Email: "",
+    BusinessName: "",
+  });
+  const [perfil, setPerfil] = useState({
+    Id: 0,
     BusinessName: "",
   });
 
@@ -32,6 +37,8 @@ function App() {
               setIsLogged={setIsLogged}
               loggedData={loggedData}
               setLoggedData={setLoggedData}
+              perfil={perfil}
+              setPerfil={setPerfil}
             />
           }
         ></Route>
@@ -43,6 +50,8 @@ function App() {
               setIsLogged={setIsLogged}
               loggedData={loggedData}
               setLoggedData={setLoggedData}
+              perfil={perfil}
+              setPerfil={setPerfil}
             />
           }
         ></Route>
@@ -109,6 +118,19 @@ function App() {
               setIsLogged={setIsLogged}
               loggedData={loggedData}
               setLoggedData={setLoggedData}
+            />
+          }
+        ></Route>
+        <Route
+          path="/perfil"
+          element={
+            <Perfil
+              isLogged={isLogged}
+              setIsLogged={setIsLogged}
+              loggedData={loggedData}
+              setLoggedData={setLoggedData}
+              perfil={perfil}
+              setPerfil={setPerfil}
             />
           }
         ></Route>

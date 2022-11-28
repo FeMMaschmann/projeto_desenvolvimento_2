@@ -8,7 +8,13 @@ import installerMarker from "../img/installerMarker.svg";
 import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import axios from "axios";
-import { baseURL, TypesLogged, TypesLoginData } from "../types/types";
+import {
+  baseURL,
+  TypesLogged,
+  TypesLoginData,
+  TypesPerfilData,
+} from "../types/types";
+import { Link } from "react-router-dom";
 
 const userMarkerIcon = L.icon({
   iconUrl: userMarker,
@@ -32,6 +38,7 @@ type BdMapData = {
   BusinessName: string;
   Adress: string;
   Instalations: number;
+  Id: number;
 };
 
 const getBdMapData = async () => {
@@ -45,7 +52,9 @@ const getBdMapData = async () => {
   }
 };
 
-export default function Map(props: TypesLogged & TypesLoginData) {
+export default function Map(
+  props: TypesLogged & TypesLoginData & TypesPerfilData
+) {
   const [userMapData, setUserMapData] = useState<UserMapData>({
     position: [-30.055322, -51.104985],
     zoom: 12,
@@ -104,6 +113,18 @@ export default function Map(props: TypesLogged & TypesLoginData) {
                       Endereço: {location.Adress} <br />
                       Número de instalações: {location.Instalations}
                     </p>
+                    <Link
+                      to="/perfil"
+                      onClick={() => {
+                        props.setPerfil({
+                          Id: location.Id,
+                          BusinessName: location.BusinessName,
+                        });
+                      }}
+                    >
+                      <span className="small">Ver perfil</span>
+                    </Link>
+                    <br />
                     <a href={googleMapsLink} className="my-google-link-button">
                       <span className="small">Ver no Google Maps</span>
                     </a>
