@@ -1,6 +1,6 @@
 const db = require("./db_connection");
 
-async function getByUserId(req, res) {
+async function getInstallationById(req, res) {
   const row = await db.query(
     `SELECT DATE_FORMAT(InstallationDate, "%d/%m/%Y") 'InstallationDate', Description, ClientName, Vehicle FROM Installations WHERE UserId = ? ORDER BY Id DESC;`,
     [req.params.id]
@@ -22,4 +22,4 @@ async function insert(req, res) {
   res.send("OK");
 }
 
-module.exports = { getByUserId, insert };
+module.exports = { getInstallationById, insert };

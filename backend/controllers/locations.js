@@ -5,9 +5,23 @@ async function getLocations(req, res) {
     `SELECT Lat, Lon, CONCAT(u.FirstName, " ", u.LastName) 'UserName', u.BusinessName
             ,CONCAT(Street, ", ", AdressNumber) 'Adress'
             ,(SELECT COUNT(*) FROM Installations WHERE UserId = a.UserId) 'Instalations'
+            ,u.Id
         FROM Adresses a JOIN Users u ON a.UserId = u.Id;`
   );
   res.send(row);
+}
+
+async function getLocationById(req, res) {
+  const row = await db.query(
+    `SELECT CONCAT(u.FirstName, " ", u.LastName) 'UserName'
+            ,CONCAT(Street, ", ", AdressNumber) 'Adress'
+            ,(SELECT COUNT(*) FROM Installations WHERE UserId = a.UserId) 'Instalations'
+            ,u.PhoneNumber
+        FROM Adresses a JOIN Users u ON a.UserId = u.Id
+        WHERE u.Id = ?;`,
+    [req.params.id]
+  );
+  res.send(row[0]);
 }
 
 async function getAdressByUserId(req, res) {
@@ -65,4 +79,9 @@ async function updateAdressByUserId(req, res) {
   res.send("Ok");
 }
 
-module.exports = { getLocations, getAdressByUserId, updateAdressByUserId };
+module.exports = {
+  getLocations,
+  getLocationById,
+  getAdressByUserId,
+  updateAdressByUserId,
+};
